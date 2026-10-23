@@ -1,0 +1,89 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNsbi3+FBppWL6uh3b2cJDb",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/ajengmaserati28/Sistem-Panen-Ajeng/blob/main/post%203\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Qk7hqr-EQGyC",
+        "outputId": "8fd7f030-029d-495c-8b8c-2a8f3b209b91"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "=== Nomor 5b: Hasil Pengukuran Waktu Eksekusi ===\n",
+            "Nilai Maksimum: Rp49348\n",
+            "Waktu Pendekatan A (O(N^2)): 0.00020305 detik\n",
+            "Waktu Pendekatan B (O(N))  : 0.00013331 detik\n"
+          ]
+        }
+      ],
+      "source": [
+        "import random\n",
+        "import time\n",
+        "\n",
+        "# Generate data acak 20 elemen\n",
+        "random.seed(42)\n",
+        "harga_produk = [random.randint(5000, 50000) for _ in range(20)]\n",
+        "\n",
+        "# Pendekatan A: O(N^2)\n",
+        "start_a = time.perf_counter()\n",
+        "max_a = harga_produk[0]\n",
+        "for i in range(len(harga_produk)):\n",
+        "    is_max = True\n",
+        "    for j in range(len(harga_produk)):\n",
+        "        if harga_produk[j] > harga_produk[i]:\n",
+        "            is_max = False\n",
+        "            break\n",
+        "    if is_max:\n",
+        "        max_a = harga_produk[i]\n",
+        "end_a = time.perf_counter()\n",
+        "waktu_a = end_a - start_a\n",
+        "\n",
+        "# Pendekatan B: O(N)\n",
+        "start_b = time.perf_counter()\n",
+        "max_b = harga_produk[0]\n",
+        "for harga in harga_produk:\n",
+        "    if harga > max_b:\n",
+        "        max_b = harga\n",
+        "end_b = time.perf_counter()\n",
+        "waktu_b = end_b - start_b\n",
+        "\n",
+        "print(\"=== Nomor 5b: Hasil Pengukuran Waktu Eksekusi ===\")\n",
+        "print(f\"Nilai Maksimum: Rp{max_b}\")\n",
+        "print(f\"Waktu Pendekatan A (O(N^2)): {waktu_a:.8f} detik\")\n",
+        "print(f\"Waktu Pendekatan B (O(N))  : {waktu_b:.8f} detik\")"
+      ]
+    }
+  ]
+}
